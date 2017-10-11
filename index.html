@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Map App</title>
-	<link href="https://fonts.googleapis.com/css?family=Nunito:400|Oswald:500" rel="stylesheet">
-	<link rel="stylesheet" href="styles/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map App</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400%7COswald:500" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-	<aside>
-		<h1>Reno Bars</h1>
-		<div class="search-container">
-			<input placeholder="Search by name" data-bind="textInput: filterValue">
-		</div>
-		<ul data-bind="foreach: locationList">
-			<li class="location" data-bind="
+<aside>
+  <h1>Reno Bars</h1>
+  <div class="search-container">
+    <input placeholder="Search by name" data-bind="textInput: filterValue">
+  </div>
+  <ul data-bind="foreach: locationList">
+    <li class="location" data-bind="
 			visible: $data.visible,
 			text: $data.title,
 			click: $parent.onClickListener
 			"></li>
-		</ul>
-	</aside>
-	<main id="map"></main>
+  </ul>
+</aside>
+<main id="map"></main>
 
-	<script src='scripts/jquery-3.2.1.min.js'></script>
-	<script src='scripts/knockout-3.4.0.js'></script>
-	<script src='scripts/app.js'></script>
-	<script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsu4tGXqDtOpiSd2Vd-QKbm1Ij8ytoEzo&callback=initMap" onerror="mapsError()"></script>
+<script src='scripts/jquery-3.2.1.min.js'></script>
+<script src='scripts/knockout-3.4.0.js'></script>
+<script src='scripts/app.js'></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsu4tGXqDtOpiSd2Vd-QKbm1Ij8ytoEzo&callback=initMap"
+        onerror="mapsError()"></script>
 </body>
-</html>
+< /html>

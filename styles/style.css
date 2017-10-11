@@ -1,159 +1,167 @@
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-	margin: 0;
-	font-family: 'Nunito', sans-serif;
-	font-weight: 400;
-	color: #555;
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    color: #555;
 }
 
 @media (min-width: 48rem) {
-	body {display: flex;}
+    body {
+        display: flex;
+    }
 }
 
 h1, h2 {
-	margin: 0;
-	font-family: 'Oswald', Sans-serif;
-	font-weight: 500;
-	line-height: .9;
-	text-transform: uppercase;
-	letter-spacing: .01em;
+    margin: 0;
+    font-family: 'Oswald', Sans-serif;
+    font-weight: 500;
+    line-height: .9;
+    text-transform: uppercase;
+    letter-spacing: .01em;
 }
 
 h1 {
-	position: relative;
-	padding: 3rem 1.5rem;
-	font-size: 5rem;
-	color: #333;
+    position: relative;
+    padding: 3rem 1.5rem;
+    font-size: 5rem;
+    color: #333;
 }
 
 h1:after {
-	content: '';
-	display: block;
-	position: absolute;
-	width: calc(100% - 3rem);
-	height: .5rem;
-	bottom: 2rem;
-	background-color: #f98;
+    content: '';
+    display: block;
+    position: absolute;
+    width: calc(100% - 3rem);
+    height: .5rem;
+    bottom: 2rem;
+    background-color: #f98;
 }
 
 aside {
-	position: relative;
-	padding-bottom: 1rem;
-	background-color: white;
-	box-shadow: 0 0 5em rgba(0,0,0,0.2);
-	z-index: 1;
+    position: relative;
+    padding-bottom: 1rem;
+    background-color: white;
+    box-shadow: 0 0 5em rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 @media (min-width: 48rem) {
-	aside {width: 16rem;}
+    aside {
+        width: 16rem;
+    }
 }
 
 .search-container {
-	height: 4.25rem;
+    height: 4.25rem;
 }
 
 input {
-	width: 100%;
-	border: 0;
-	padding: .75rem 1.5rem;
-	background-color: #f7f7f7;
-	border-top: solid 1px #ddd;
-	border-bottom: solid 1px #ddd;
-	font-size: 1rem;
-	transition: all .3s;
+    width: 100%;
+    border: 0;
+    padding: .75rem 1.5rem;
+    background-color: #f7f7f7;
+    border-top: solid 1px #ddd;
+    border-bottom: solid 1px #ddd;
+    font-size: 1rem;
+    transition: all .3s;
 }
 
 input:focus {
-	outline: 0;
-	padding: 1.5rem;
+    outline: 0;
+    padding: 1.5rem;
 }
 
 ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 @media (max-width: 48rem) {
-	ul {column-count: 2;}
+    ul {
+        column-count: 2;
+    }
 }
 
 @media (max-width: 32rem) {
-	ul {column-count: 1;}
+    ul {
+        column-count: 1;
+    }
 }
 
 li {
-	display: inline-block;
-	width: 100%;
-	padding: .75rem 1.5rem;
-	border-bottom: solid 1px #ddd;
-	font-size: .8rem;
+    display: inline-block;
+    width: 100%;
+    padding: .75rem 1.5rem;
+    border-bottom: solid 1px #ddd;
+    font-size: .8rem;
 }
 
 li:hover {
-	background-color: #333;
-	color: white;
-	cursor: pointer;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
 }
 
 .activeLocation {
-	background-color: #f98;
+    background-color: #f98;
 }
 
 #map {
-	flex: 1;
-	height: 100vh;
+    flex: 1;
+    height: 100vh;
 }
 
 .gm-style-iw,
 .gm-style-iw div {
-	overflow: visible !important;
+    overflow: visible !important;
 }
 
 .infoWindow {
-	position: relative;
-	left: .7rem;
-	background: #333;
-	padding: 1rem 2rem .6rem;
-	border: .5rem solid white;
-	box-shadow: 0 0 3rem rgba(0,0,0,0.3);
-	text-align: center;
+    position: relative;
+    left: .7rem;
+    background: #333;
+    padding: 1rem 2rem .6rem;
+    border: .5rem solid white;
+    box-shadow: 0 0 3rem rgba(0, 0, 0, 0.3);
+    text-align: center;
 }
 
 .infoWindow:after,
 .infoWindow:before {
-	content: '';
-	display: block;
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-width: 2rem 2rem 0 2rem;
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 2rem 2rem 0 2rem;
 }
 
 .infoWindow:after {
-	bottom: -1.2rem;
-	border-color: #333 transparent transparent transparent;
+    bottom: -1.2rem;
+    border-color: #333 transparent transparent transparent;
 }
 
 .infoWindow:before {
-	bottom: -2rem;
-	border-color: white transparent transparent transparent;
+    bottom: -2rem;
+    border-color: white transparent transparent transparent;
 }
 
 .infoWindow-title {
-	font-size: 1.5rem;
-	padding: 1rem 0 0;
-	color: white;
+    font-size: 1.5rem;
+    padding: 1rem 0 0;
+    color: white;
 }
 
 .infoWindow-address {
-	font-size: 1rem;
-	letter-spacing: .04rem;
-	color: #ddd;
+    font-size: 1rem;
+    letter-spacing: .04rem;
+    color: #ddd;
 }
