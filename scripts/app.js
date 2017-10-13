@@ -2,44 +2,32 @@
 
 var locationData = [{
   title: 'Chapel Tavern',
-  text: '1099 South Virginia Street<br>Reno, NV 89502',
   lat: 39.5127098,
   lng: -119.80689
 }, {
   title: 'Imbib Custom Brews',
-  text: '785 East 2nd Street<br>Reno, NV 89502',
   lat: 39.5276091,
   lng: -119.8010314
 }, {
   title: 'Lead Dog Brewing Co.',
-  text: '415 East 4th Street<br>Reno, NV 89512',
   lat: 39.5315294,
   lng: -119.8084458
 }, {
-  title: 'Pignic Pub & Patio',
-  text: '235 Flint Street<br>Reno, NV 89501',
+  title: 'Pignic',
   lat: 39.5221,
   lng: -119.8158
 }, {
   title: 'Pinon Bottle Co',
-  text: '777 South Center Street #101<br>Reno, NV 89501',
   lat: 39.5181,
   lng: -119.8081
 }, {
   title: 'Reno Public House',
-  text: '33 St Lawrence Avenue<br>Reno, NV 89501',
   lat: 39.5182,
   lng: -119.81005549
 }, {
   title: 'The Depot Craft Brewery Distillery',
-  text: '325 East 4th Street<br>Reno, NV 89512',
   lat: 39.531084,
   lng: -119.8095549
-}, {
-  title: 'The Saint',
-  text: '761 South Virginia Street<br>Reno, NV 89501',
-  lat: 39.5172564,
-  lng: -119.8090445
 }];
 
 var locations = ko.observableArray(locationData);
@@ -79,9 +67,28 @@ function initMap() {
       animation: google.maps.Animation.DROP
     });
 
-    var infowindow = new google.maps.InfoWindow({
-      content: '<div class="infoWindow"><h2 class="infoWindow-title">' + data.title + '</h2><p class="infoWindow-address">' +
-      data.text + '</p></div>'
+    var infowindow = new google.maps.InfoWindow({});
+
+    // Foursquare API
+    var apiUrl = 'https://api.foursquare.com/v2/venues/search?ll=' +
+    data.lat + ',' + data.lng + '&client_id=T45HDGHTOTF5Y1NDRLQ1BAUECWZYBJOOAZNS1XDAHCA02O4O&client_secret=HHK4LUEQJGI213DKZF5S0DQKBJ2W22Q5M0D1BHKPLY1RKQOS&query=' + data.title + '&v=20171010&m=foursquare';
+
+    $.getJSON(apiUrl).done(function(marker) {
+      var response = marker.response.venues[0];
+      self.street = response.location.formattedAddress[0];
+      self.city = response.location.formattedAddress[1];
+
+      self.fourSquareContent =
+        '<div class="infoWindow">' +
+        '<h2 class="infoWindow-title">' + data.title + '</h2>' +
+        '<p class="infoWindow-address">' + self.street + '<br>' + self.city +'</p>' +
+        '</div>';
+
+      infowindow.setContent(self.fourSquareContent);
+
+    }).fail(function() {
+      // Foursquare Error
+      alert('Sorry, we were unable to fetch info from Foursquare');
     });
 
     data.mapMarker = marker;
@@ -126,44 +133,44 @@ function initMap() {
   });
 
   map.set('styles', [{
-    "featureType": "all",
-    "elementType": "geometry",
-    "stylers": [{"visibility": "off"}]
+    'featureType': 'all',
+    'elementType': 'geometry',
+    'stylers': [{'visibility': 'off'}]
   }, {
-    "featureType": "all",
-    "elementType": "labels",
-    "stylers": [{"visibility": "off"}]
+    'featureType': 'all',
+    'elementType': 'labels',
+    'stylers': [{'visibility': 'off'}]
   }, {
-    "featureType": "landscape",
-    "elementType": "all",
-    "stylers": [
-      {"color": "#ffffff"},
-      {"visibility": "on"}]
+    'featureType': 'landscape',
+    'elementType': 'all',
+    'stylers': [
+      {'color': '#ffffff'},
+      {'visibility': 'on'}]
   }, {
-    "featureType": "road",
-    "elementType": "geometry",
-    "stylers": [
-      {"color": "#cccccc"},
-      {"visibility": "simplified"}]
+    'featureType': 'road',
+    'elementType': 'geometry',
+    'stylers': [
+      {'color': '#cccccc'},
+      {'visibility': 'simplified'}]
   }, {
-    "featureType": "road",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {"color": "#000000"},
-      {"visibility": "on"}]
+    'featureType': 'road',
+    'elementType': 'labels.text.fill',
+    'stylers': [
+      {'color': '#000000'},
+      {'visibility': 'on'}]
   }, {
-    "featureType": "road",
-    "elementType": "labels.text.stroke",
-    "stylers": [
-      {"color": "#ffffff"},
-      {"visibility": "on"}]
+    'featureType': 'road',
+    'elementType': 'labels.text.stroke',
+    'stylers': [
+      {'color': '#ffffff'},
+      {'visibility': 'on'}]
   }]);
 
 }
 
 // View List
 
-function View() {
+function view() {
 
   var self = this;
 
@@ -212,10 +219,9 @@ function View() {
   return self;
 }
 
-ko.applyBindings(new View());
+ko.applyBindings(new view());
 
-// Errors
+// Google Maps Errors
 function mapsError() {
-  var myelement = document.getElementById('map');
-  myelement.innerHTML = 'Sorry, we were unable to connect with the Google Maps API';
+  $('#map').html('<p class="mapError">Sorry, we were unable to connect with Google Maps</p>');
 }
